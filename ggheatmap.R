@@ -28,10 +28,10 @@ ggheatmap<-function(datatable, outputName = "heatmap.pdf", sep = "\t", ggformat 
   df[,2] <- as.factor(df[,2])
   
   # begins plotting
-  pdf(outputName, width = 7, height = 3)
+  pdf(outputName, width = width, height = height)
   g <- ggplot(df, aes(x = df[,xcol], y = df[,ycol], fill = df[,3]))
-  g <- g + geom_tile(color = "black", size = 0.25) + 
-    geom_text(aes(label = round(df[,3], digits = 2)), color = "black") +
+  g <- g + geom_tile(color = "black", size = 0.15) + 
+    geom_text(aes(label = round(df[,3], digits = 2)), color = "black", size = 1.8) +
     scale_fill_gradientn(colors = c("green2","white","red3"), limits = c(-15,15),
                          breaks = seq(-10,10,10),
                          values = scales::rescale(c(-15,-12,-10,0,10,12,15))) + 
