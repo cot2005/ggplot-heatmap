@@ -27,15 +27,17 @@ ggheatmap<-function(datatable, outputName = "heatmap.pdf", sep = "\t", ggformat 
   df[,1] <- as.factor(df[,1])
   df[,2] <- as.factor(df[,2])
   
+  fontsize <- width/2
   # begins plotting
   pdf(outputName, width = width, height = height)
   g <- ggplot(df, aes(x = df[,xcol], y = df[,ycol], fill = df[,3]))
   g <- g + geom_tile(color = "black", size = 0.15) + 
-    geom_text(aes(label = round(df[,3], digits = 2)), color = "black", size = 1.8) +
+    geom_text(aes(label = round(df[,3], digits = 2)), color = "black", size = fontsize) +
     scale_fill_gradientn(colors = c("green2","white","red3"), limits = c(-15,15),
                          breaks = seq(-10,10,10),
                          values = scales::rescale(c(-15,-12,-10,0,10,12,15))) + 
-    theme_minimal() + xlab(xlab) + ylab(ylab) + labs(fill=varlab)
+    theme_minimal() + xlab(xlab) + ylab(ylab) + labs(fill=varlab) + 
+    theme(axis.text=element_text(size=fontsize*2), axis.title=element_text(size=fontsize*2,face="bold"))
   print(g)
   dev.off()
 }
