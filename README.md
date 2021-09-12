@@ -1,6 +1,7 @@
 # ggplot-heatmap
 General Function to make a customizable heatmap with ggplot. Gradient scale can be customized inside of the function.
 
+*Axis label sizes are linked to plot width.
 ```
 datatable = file name containing data
 outputName = "heatmap.pdf"
